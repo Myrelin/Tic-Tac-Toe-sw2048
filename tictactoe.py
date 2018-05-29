@@ -55,7 +55,7 @@ def tic_tac_toe():
         try:
             p1_input = int(input(p1 + ", enter a number to place your x (1-9):"))
             if board[p1_input] != "x" and board[p1_input] != "o" and board[p1_input] != 0:
-                board[p1_input] = "x"
+                board[p1_input] = '\033[94mx\033[0m'
                 tiecheck()
             else:
                 print("Choose another place!")
@@ -71,7 +71,7 @@ def tic_tac_toe():
         try:
             p2_input = int(input(p2 + ", enter a number to place your o (1-9): "))
             if board[p2_input] != "x" and board[p2_input] != "o" and board[p2_input] != 0:
-                board[p2_input] = "o"
+                board[p2_input] = '\033[91mo\033[0m'
                 tiecheck()
             else:
                 print("Choose another place!")
@@ -87,8 +87,11 @@ def tic_tac_toe():
         continue_game = input("Do you want to keep playing? (y/n)")
         if continue_game == "y":
             tic_tac_toe()
-        else:
+        elif continue_game == "n":
             print("Thank you for playing!")
+        else:
+            keep_playing()
+            
 
     def game_on():
         showboard()
@@ -96,7 +99,7 @@ def tic_tac_toe():
         while True:
             player1()
             showboard()
-            if check_1("x") == "Win":
+            if check_1('\033[94mx\033[0m') == "Win":
                 print(p1 + " win!")
                 keep_playing()
                 break
@@ -107,7 +110,7 @@ def tic_tac_toe():
 
             player2()
             showboard()
-            if check_1("o") == "Win":
+            if check_1('\033[91mo\033[0m') == "Win":
                 print(p2 + " win!")
                 keep_playing()
                 break
