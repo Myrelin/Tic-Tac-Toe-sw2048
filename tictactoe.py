@@ -54,7 +54,7 @@ def tic_tac_toe():
     def player1():
         try:
             p1_input = int(input(p1 + ", enter a number to place your x (1-9):"))
-            if board[p1_input] != "x" and board[p1_input] != "o" and board[p1_input] != 0:
+            if board[p1_input] != '\033[94mx\033[0m' and board[p1_input] != '\033[91mo\033[0m' and board[p1_input] != 0:
                 board[p1_input] = '\033[94mx\033[0m'
                 tiecheck()
             else:
@@ -70,7 +70,7 @@ def tic_tac_toe():
     def player2():
         try:
             p2_input = int(input(p2 + ", enter a number to place your o (1-9): "))
-            if board[p2_input] != "x" and board[p2_input] != "o" and board[p2_input] != 0:
+            if board[p2_input] != '\033[94mx\033[0m' and board[p2_input] != '\033[91mo\033[0m' and board[p2_input] != 0:
                 board[p2_input] = '\033[91mo\033[0m'
                 tiecheck()
             else:
