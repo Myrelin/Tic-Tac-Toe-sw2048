@@ -1,11 +1,13 @@
 import os
 
-
-
 def tic_tac_toe():
+    def clear():
+        os.system( 'clear' )   
+    
     board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     p1 = str(input("Player 1 with x: "))
     p2 = str(input("Player 2 with o: "))
+    clear()
 
     def showboard():
       
@@ -56,16 +58,11 @@ def tic_tac_toe():
         elif check(c, 3, 5, 7) == "Win":
             return "Win"
 
-    
-    #clear output between games
-    
-    def clear():
-        os.system( 'clear' )    
-
     #player moves
 
     def player1():
         try:
+            
             p1_input = int(input(p1 + ", enter a number to place your x (1-9):"))
             if board[p1_input] != '\033[94mx\033[0m' and board[p1_input] != '\033[91mo\033[0m' and board[p1_input] != 0:
                 board[p1_input] = '\033[94mx\033[0m'
@@ -109,7 +106,6 @@ def tic_tac_toe():
         else:
             keep_playing()
             
-
     #Game loop
     def game_on():
         showboard()
@@ -117,6 +113,7 @@ def tic_tac_toe():
         while True:
             
             player1()
+            clear()
             showboard()
             
             if check_1('\033[94mx\033[0m') == "Win":
@@ -129,6 +126,7 @@ def tic_tac_toe():
                 break
           
             player2()
+            clear()
             showboard()
             if check_1('\033[91mo\033[0m') == "Win":
                 print(p2 + " win!")
