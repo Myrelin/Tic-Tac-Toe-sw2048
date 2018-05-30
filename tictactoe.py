@@ -10,7 +10,6 @@ def tic_tac_toe():
     clear()
 
     def showboard():
-      
         print(board[1], "|", board[2], "|", board[3])
         print("--", "--", "--")
         print(board[4], "|", board[5], "|", board[6])
@@ -45,14 +44,12 @@ def tic_tac_toe():
             return "Win"
         elif check(c, 7, 8, 9) == "Win":
             return "Win"
-
         elif check(c, 1, 4, 7) == "Win":
             return "Win"
         elif check(c, 2, 5, 8) == "Win":
             return "Win"
         elif check(c, 3, 6, 9) == "Win":
             return "Win"
-
         elif check(c, 1, 5, 9) == "Win":
             return "Win"
         elif check(c, 3, 5, 7) == "Win":
@@ -61,8 +58,7 @@ def tic_tac_toe():
     #player moves
 
     def player1():
-        try:
-            
+        try:      
             p1_input = int(input(p1 + ", enter a number to place your x (1-9):"))
             if board[p1_input] != '\033[94mx\033[0m' and board[p1_input] != '\033[91mo\033[0m' and board[p1_input] != 0:
                 board[p1_input] = '\033[94mx\033[0m'
@@ -98,8 +94,7 @@ def tic_tac_toe():
         continue_game = input("Do you want to keep playing? (y/n)")
         if continue_game == "y":
             clear()
-            tic_tac_toe()
-            
+            tic_tac_toe()       
         elif continue_game == "n":
             clear()
             print("Thank you for playing!")
@@ -109,13 +104,10 @@ def tic_tac_toe():
     #Game loop
     def game_on():
         showboard()
-    
         while True:
-            
             player1()
             clear()
             showboard()
-            
             if check_1('\033[94mx\033[0m') == "Win":
                 print(p1 + " win!")
                 keep_playing()
@@ -124,7 +116,6 @@ def tic_tac_toe():
                 print("It's a tie!")
                 keep_playing()
                 break
-          
             player2()
             clear()
             showboard()
