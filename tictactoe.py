@@ -1,12 +1,41 @@
 import os
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 def tic_tac_toe():
     def clear():
-        os.system( 'clear' )   
+        os.system( 'clear' )  
+
+    print("\n\n\n\n\n\n\n\n\n\n")
+    print('\033[96m\033[1m* * * * * * * * * * * * * * * \033[0m') 
+    print()
+    print('\033[91m\033[1mW e l c o m e  t o  T i c - T a c - T o e !\033[0m')
+    print()
+    print('\033[96m\033[1m* * * * * * * * * * * * * * * * \033[0m')
+    print()
+    print('\033[94mCode by: Dora Koreny, Anna Iklody\033[0m')
+    print()
+    print('\033[96m\033[1m* * * * * * * * * * * * * * * * \033[0m')
+    print()
+    print('\033[91m\033[1mS h a l l   w e   p l a y   a   g a m e ?\033[0m')
+    print()
+    print("---", "---", "---", "---", "---", "---", "---", "---", "---", "---")
+    print("\n\n\n\n\n")
+  
     
     board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    p1 = str(input("Player 1 with x: "))
-    p2 = str(input("Player 2 with o: "))
+    p1 = str(input('\033[94mPlayer 1 with x: \033[0m'))
+    p2 = str(input('\033[91mPlayer 2 with o: \033[0m'))
     clear()
 
     def showboard():
@@ -59,34 +88,34 @@ def tic_tac_toe():
 
     def player1():
         try:      
-            p1_input = int(input(p1 + ", enter a number to place your x (1-9):"))
+            p1_input = int(input(p1 + '\033[94m, enter a number to place your x (1-9):\033[0m'))
             if board[p1_input] != '\033[94mx\033[0m' and board[p1_input] != '\033[91mo\033[0m' and board[p1_input] != 0:
                 board[p1_input] = '\033[94mx\033[0m'
                 tiecheck()
             else:
-                print("Choose another place!")
+                print("\nChoose another place!")
                 player1()
         except ValueError:
-            print("Please choose a number, not a letter!")
+            print("\nPlease choose a '\033[4mnumber\033[0m', not a letter!")
             player1()
         except IndexError:
-            print("Please choose a number between 1 and 9!")
+            print("\nPlease choose a number '\033[4mbetween 1 and 9!\033[0m'")
             player1()
 
     def player2():
         try:
-            p2_input = int(input(p2 + ", enter a number to place your o (1-9): "))
+            p2_input = int(input(p2 + '\033[91m, enter a number to place your o (1-9):\033[0m'))
             if board[p2_input] != '\033[94mx\033[0m' and board[p2_input] != '\033[91mo\033[0m' and board[p2_input] != 0:
                 board[p2_input] = '\033[91mo\033[0m'
                 tiecheck()
             else:
-                print("Choose another place!")
+                print("\nChoose another place!")
                 player2()
         except ValueError:
-            print("Please choose a number, not a letter!")
+            print("\nPlease choose a '\033[4mnumber\033[0m', not a letter!")
             player2()
         except IndexError:
-            print("Please choose a number between 1 and 9!")
+            print("\nPlease choose a number '\033[4mbetween 1 and 9!\033[0m'")
             player2()
 
     
@@ -97,7 +126,7 @@ def tic_tac_toe():
             tic_tac_toe()       
         elif continue_game == "n":
             clear()
-            print("Thank you for playing!")
+            print('\n\n\n\n\n\n\n\n\n\n\033[1mThank you for playing!\033[0m')
         else:
             keep_playing()
             
@@ -109,7 +138,7 @@ def tic_tac_toe():
             clear()
             showboard()
             if check_1('\033[94mx\033[0m') == "Win":
-                print(p1 + " win!")
+                print(p1 + " wins!")
                 keep_playing()
                 break
             elif tiecheck() == "tie":
@@ -120,7 +149,7 @@ def tic_tac_toe():
             clear()
             showboard()
             if check_1('\033[91mo\033[0m') == "Win":
-                print(p2 + " win!")
+                print(p2 + " wins!")
                 keep_playing()
                 break
             elif tiecheck() == "tie":
