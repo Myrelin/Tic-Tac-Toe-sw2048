@@ -1,3 +1,6 @@
+import os
+
+
 
 def tic_tac_toe():
     board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -5,13 +8,14 @@ def tic_tac_toe():
     p2 = str(input("Player 2 with o: "))
 
     def showboard():
+      
         print(board[1], "|", board[2], "|", board[3])
         print("--", "--", "--")
         print(board[4], "|", board[5], "|", board[6])
         print("--", "--", "--")
         print(board[7], "|", board[8], "|", board[9])
 
-
+    #Checking for a full board, and a tie
     def sumboard():
         summa = 0
         for item in board:
@@ -25,6 +29,8 @@ def tic_tac_toe():
         boardtotal = sumboard()
         if boardtotal == 0:
             return "tie"
+
+    #Checking for win conditions
 
     def check(c, p1, p2, p3):
             if board[p1] == c and board[p2] == c and board[p3] == c:
@@ -49,7 +55,14 @@ def tic_tac_toe():
             return "Win"
         elif check(c, 3, 5, 7) == "Win":
             return "Win"
-        
+
+    
+    #clear output between games
+    
+    def clear():
+        os.system( 'clear' )    
+
+    #player moves
 
     def player1():
         try:
@@ -83,22 +96,29 @@ def tic_tac_toe():
             print("Please choose a number between 1 and 9!")
             player2()
 
+    
     def keep_playing():
         continue_game = input("Do you want to keep playing? (y/n)")
         if continue_game == "y":
+            clear()
             tic_tac_toe()
+            
         elif continue_game == "n":
+            clear()
             print("Thank you for playing!")
         else:
             keep_playing()
             
 
+    #Game loop
     def game_on():
         showboard()
     
         while True:
+            
             player1()
             showboard()
+            
             if check_1('\033[94mx\033[0m') == "Win":
                 print(p1 + " win!")
                 keep_playing()
@@ -107,7 +127,7 @@ def tic_tac_toe():
                 print("It's a tie!")
                 keep_playing()
                 break
-
+          
             player2()
             showboard()
             if check_1('\033[91mo\033[0m') == "Win":
