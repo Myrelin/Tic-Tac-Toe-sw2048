@@ -130,22 +130,22 @@ def main():
     while continue_game == "y":
         player1(p1, board)
         if check_win(board) == "Win":
-            print("please fucking work")
+            print(p1, "Wins")
             keep_playing(continue_game)
             break
 
         elif tiecheck(board) == "Tie":
-            print("tie the thing already")
+            print("It's a tie!")
             keep_playing(continue_game)
             break
  
         player2(p2, board)
         if check_win(board) == "Win":
-            print("work here too kthx")
+            print(p2, "Wins")
             keep_playing(continue_game)
             break
         elif tiecheck(board) == "Tie":
-            print("tie the thing already")
+            print("It's a tie!")
             keep_playing(continue_game)
             break
     
