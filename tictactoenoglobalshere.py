@@ -29,8 +29,9 @@ def player1(p1, board):
         if board[p1_input] != '\033[94mx\033[0m' and board[p1_input] != '\033[91mo\033[0m' and board[p1_input] != 0:
             board[p1_input] = '\033[94mx\033[0m'
             clear()
-            showboard(board)
-        
+            showboard(board) 
+            tiecheck(board)
+             
            
         else:
             print("\nChoose another place!")
@@ -50,7 +51,8 @@ def player2(p2, board):
             board[p2_input] = '\033[91mo\033[0m'
             clear()
             showboard(board)
-           
+            tiecheck(board)
+            
         else:
             print("\nChoose another place!")  
             player2(p2, board)   
@@ -60,7 +62,21 @@ def player2(p2, board):
     except IndexError:
         print("\nPlease choose a number '\033[4mbetween 1 and 9!\033[0m'")
         player2(p2, board)
-    
+
+
+def sumboard(board):
+    summa = 0
+    for item in board:
+        try:
+            summa = summa + item
+        except TypeError:
+            pass
+    return summa
+
+def tiecheck(board):
+    boardtotal = sumboard(board)
+    if boardtotal == 0:
+        return "Tie"
 
 def check_win(board):
         for i in board:
@@ -89,17 +105,13 @@ def check_win(board):
 
 
 
+
+
 def keep_playing(continue_game):
         continue_game = input("Do you want to keep playing? (yes/no)")
         if continue_game == "yes":
-            continue_game = input("Start new game with same players or new ones (same/new)")
-            if continue_game == "same":
-                clear()
-                continue_game = "y"
-                return continue_game
-            elif continue_game == "new":
-                clear()
-                main()   
+            clear()
+            main()   
         elif continue_game == "no":
             clear()
             print('\n\n\n\n\n\n\n\n\n\n\033[1mThank you for playing!\033[0m')
@@ -114,16 +126,26 @@ def main():
     p2 = player2_start()
     clear()
     continue_game = "y"
+
     while continue_game == "y":
         player1(p1, board)
         if check_win(board) == "Win":
             print("please fucking work")
             keep_playing(continue_game)
             break
+
+        elif tiecheck(board) == "Tie":
+            print("tie the thing already")
+            keep_playing(continue_game)
+            break
  
         player2(p2, board)
         if check_win(board) == "Win":
             print("work here too kthx")
+            keep_playing(continue_game)
+            break
+        elif tiecheck(board) == "Tie":
+            print("tie the thing already")
             keep_playing(continue_game)
             break
     
